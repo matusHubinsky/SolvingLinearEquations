@@ -1,2 +1,2 @@
 # SolvingLinearEquations
-Caused to solve a system of linear equations
+Methods used to solve a system of linear equations
