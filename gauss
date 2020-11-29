@@ -1,0 +1,30 @@
+print('Gauss elimination calculator')
+print('Level of matrix: ')
+n = int(input())
+matrix = []
+for i in range(n):
+    row = [float(_) for _ in input().split()]
+    matrix.append(row)
+print()
+for k in range(n - 1):
+    row, column = k, k
+    if (matrix[row + 1][column] != 0 and matrix[row + 1][column] != 1):
+        for j in range(row, n - 1):
+            if (matrix[j + 1][column] != 0):
+                multi = matrix[row][column] / matrix[j + 1][column]
+                for i in range(n + 1):
+                    matrix[j + 1][i] = round(matrix[j + 1][i] * multi, 2)
+                for i in range(n + 1):
+                    matrix[j + 1][i] = round(matrix[j + 1][i] - matrix[row][i], 2)
+        if (matrix[row + 1][column + 1] > 1 or matrix[row + 1][column + 1] < -1):
+            for i in range(n):
+                matrix[row + 1][i + 1] /= matrix[row + 1][column + 1]
+        elif (matrix[row + 1][column + 1] < 1 and matrix[row + 1][column + 1] > -1):
+            multi = round(1 / matrix[row + 1][column + 1], 2)
+            for i in range(n):
+                matrix[row + 1][i + 1] *= multi
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        if (matrix[i][j] == -0.0):
+            matrix[i][j] = 0.0
+[print('  '.join(str(word) for word in row)) for row in matrix]
